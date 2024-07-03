@@ -46,6 +46,10 @@ aside li {
   gap: 50px;
 }
 
+.tag-container p{
+  cursor: pointer;
+}
+
 nav label {
   margin-top: 20px;
   display: flex;
@@ -116,5 +120,12 @@ nav label input {
   background: #161f2e;
   height: 100vh;
   width: 0px;
-  transition: 0.1s;
+  transition: 0.3s;
 }
+
+#aside-movie #close-button {
+  margin: 20px;
+  background: none;
+  cursor: pointer;
+}
+
