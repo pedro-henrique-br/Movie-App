@@ -13,7 +13,6 @@ const fetchMovies = async (endPoint, query = "") => {
   }
 }
 
-
 const searchMovies = async (query) => {
   moviesContainer.innerHTML = ""
   try {

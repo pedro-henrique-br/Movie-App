@@ -4,6 +4,38 @@ const asideContainer = document.getElementById("aside-movie");
 const closeButton = document.getElementById("close-button");
 const pageContainer = document.querySelector(".page-container");
 
+let defaultPages = [1, 2, 3, 4, 5];
+
+let currentPage
+
+const getCurrentPage = () => {
+  let pages = document.createElement("div");
+  pages.innerHTML = `
+          <div class="btn-group">
+            ${defaultPages.map((page) => {
+              return `<a class="btn btn-primary active">${page}</a>`;
+            })}
+          </div>
+          `;
+    pages.querySelectorAll("a").forEach((page) => {
+    page.addEventListener("click", () => {
+      const pageValue = Number(page.textContent);
+      getMovies("", pageValue);
+      input.value = "";
+      currentPage = defaultPages.indexOf(pageValue)
+      defaultPages.push(Number(defaultPages.length + 1))
+      defaultPages.splice(currentPage, -1)
+      console.log(currentPage)
+      pages.innerHTML = ""
+      getCurrentPage()
+    });
+  });
+
+  pageContainer.appendChild(pages);
+};
+
+getCurrentPage(defaultPages);
+
 const getMovies = async (option, page = 1) => {
   const language = `pt-BR`;
   let url;
@@ -15,7 +47,7 @@ const getMovies = async (option, page = 1) => {
       url = `/movie/top_rated?language=${language}&page=${page}`;
       break;
     default:
-      url = `/movie/upcoming?language=en-US&page=1`;
+      url = `/movie/upcoming?language=en-US&page=${page}`;
   }
   try {
     const data = await fetchMovies(url);
@@ -25,7 +57,7 @@ const getMovies = async (option, page = 1) => {
   } catch (error) {
     console.log(error);
   }
-
+  return page;
 };
 
 window.addEventListener("load", () => getMovies());
@@ -34,7 +66,10 @@ const getMovieData = async (movieId) => {
   moviesContainer.innerHTML = "";
   try {
     const data = await fetchMovies(`/movie/${movieId}?`);
-    createCard(data);
+    if (!data) {
+      pages.innerHTML = "";
+    }
+    return createCard(data);
   } catch (error) {
     console.log(error);
   }
@@ -67,28 +102,6 @@ const createCard = (data) => {
   moviesContainer.appendChild(card);
   card.style.opacity = "1";
 };
-
-let defaultPages = [1, 2, 3, 4, 5];
-let currentPage = [];
-
-const getCurrentPage = () => {
-  pageContainer.innerHTML = ""
-  setTimeout(() => {
-    let pages = document.createElement("div");
-    pages.innerHTML = `
-          <div class="btn-group">
-            ${
-            defaultPages.map((page) => {
-            return `<a class="btn btn-primary active">${page}</a>`
-          })
-            }
-          </div>
-          `;
-    pageContainer.appendChild(pages);
-  }, 350)
-};
-
-getCurrentPage()
 
 let typingTimeout;
 
@@ -150,7 +163,7 @@ document.querySelectorAll(".tag-container p").forEach((option) =>
     setTimeout(() => {
       const optionName = option.textContent;
       getMovies(optionName);
-      getCurrentPage()
+      getCurrentPage();
     }, 150);
   })
 );
