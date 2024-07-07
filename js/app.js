@@ -21,16 +21,9 @@ const getCurrentPage = () => {
     page.addEventListener("click", () => {
       const pageValue = Number(page.textContent);
       getMovies("", pageValue);
-      input.value = "";
       currentPage = defaultPages.indexOf(pageValue)
-      defaultPages.push(Number(defaultPages.length + 1))
-      defaultPages.splice(currentPage, -1)
-      console.log(currentPage)
-      pages.innerHTML = ""
-      getCurrentPage()
     });
   });
-
   pageContainer.appendChild(pages);
 };
 
@@ -92,12 +85,11 @@ const createCard = (data) => {
       <div class="card-body">
         <h6>${title}</h6>
         <div class="movie-info"
-        <p>${vote_average === 0 ? "Not found" : vote_average.toFixed(1)}</p>
-        <p>${runtime ? runtime + " " + "min" : "runtime is undefined"}  </p>
+        <p>${vote_average === 0 ? "" : vote_average.toFixed(1)}</p>
+        <p>${runtime ? `${runtime} min` : ""}  </p>
         </div>
         </div>
         </div>
-        
         `;
   moviesContainer.appendChild(card);
   card.style.opacity = "1";
