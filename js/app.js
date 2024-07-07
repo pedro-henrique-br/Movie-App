@@ -94,12 +94,13 @@ const createCard = (data) => {
       poster_path
         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
         : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
-    } class="card-img-top" alt="${title} img">
+    } class="card-img-top" alt="${title} img"
+     style="height: ${poster_path ? ("") : ("450px")}">
         <div class="card-body">
           <h6>${title}</h6>
           <div class="movie-info"
-          <p>${vote_average === 0 ? "" : vote_average.toFixed(1)}</p>
-          <p>${runtime ? `${runtime} min` : ""}  </p>
+          ${vote_average === 0.0 ? ("") : (`<p style="background: none; color: #ffff">${vote_average.toFixed(1)}</p>`)}
+          ${runtime === 0 ? ("") : (`<p style="background: none; color: #ffff">${runtime} min</p>`)}
           </div>
           </div>
           </div>
@@ -130,14 +131,15 @@ const aside = (data) => {
   }
   asideContainer.style.transform = "translateX(0%)";
   setTimeout(() => {
-    console.log(data)
-    const { poster_path, title, vote_average, runtime, genres, release_date, overview, backdrop_path, production_companies} = data;
+    
+    const {title, vote_average, runtime, genres, release_date, overview, backdrop_path, production_companies} = data;
     
     const genresArray = new Array()
     genres.forEach((genre) => genresArray.push(genre.name))
 
     let asideInfo = document.createElement("div");
     asideInfo.classList = "aside-info";
+    asideInfo.style.background = "#192227"
     asideInfo.innerHTML = `
     <img
       id="close-button"
@@ -147,32 +149,32 @@ const aside = (data) => {
       alt="close-window--v1" />
     </div>
     <div class="card-body">
-    
-    <img src=${
-      poster_path
-        ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
-        : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
-    } 
-    class="card-img-top"
-    alt="${title} img">
+      <img src=${
+        backdrop_path
+          ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+          : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"} 
+      class="card-img-top">
       <div class="card-title" style="background: none;" >
         <h4 style="background: none; color: #ffff">${title}</h6>
         <h4 style="background: none; color: #ffffff96">${release_date.slice(0,4)}</h4>
       </div>
       <div class="movie-info"
-        <div class="sub-info">
-          <h6>${production_companies[0].name}</h6>
-          <h6 style="background: none; color: #ffffff96">${genresArray.map((genre) => ` ${genre}`)}</h6>
+        <div class="sub-info" style="word-wrap: wrap;">
+          <h6 style="color: #508aa7; background: none;">${production_companies[0] ? (production_companies[0].name) : ("")}</h6>
+          <h6 style="background: none; margin-left: 20px;">${genresArray.map((genre) => ` ${genre}`)}</h6>
         </div>
-        <div class="sub-info">
-          <p style="background: none; color: #ffffff96">${vote_average.toFixed(1)}</p>
-          <p style="background: none; color: #ffffff96">${runtime || ""}  min</p>
+        <div class="sub-info" style="background: none;">
+          ${vote_average === 0.0 ? ("") : (`<p style="background: none; color: #ffff">${vote_average.toFixed(1)}</p>`)}
+          ${runtime === 0 ? ("") : (`<p style="background: none; color: #ffff">${runtime} min</p>`)}
+        </div>
           <p style="background: none; color: #ffffff96">${overview}</p>
-        </div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">Left</button>
+            <button type="button" class="btn btn-primary">Middle</button>
+            <button type="button" class="btn btn-primary">Right</button>
+          </div>
       </div>
-      <div class="buttons-container">
-        </div>
-    </div>
+      </div>
     `;
 
     asideContainer.appendChild(asideInfo);

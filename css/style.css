@@ -135,13 +135,14 @@ nav label input:focus {
   justify-content: center;
   align-items: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 60px;
   transition: 0.3s;
   animation-name: card-animation;
   animation-duration: 1s;
 }
 
 .card {
+  background: none;
   cursor: pointer;
 }
 
@@ -171,8 +172,8 @@ nav label input:focus {
 }
 
 .card-body .movie-info {
+  background: none;
   color: #ffff;
-  height: 0px;
   display: flex;
   justify-content: space-between;
 }
@@ -189,9 +190,25 @@ nav label input:focus {
   width: 500px;
 }
 
+#aside-movie .btn-group {
+  margin-top: 200px;
+}
+
 .aside-info {
   position: absolute;
   width: 500px;
+  height: 100vh;
+}
+
+.aside-info .card-body {
+  gap: 20px;
+  width: 500px;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  text-align: center;
 }
 
 .aside-info img {
@@ -200,6 +217,32 @@ nav label input:focus {
 }
 
 .aside-info .card-title {
+  color: #192227;
+  display: flex;
+  justify-content: space-around;
+  max-width: 450px;
+  gap: 10px;
+}
+
+.aside-info .movie-info {
+  gap: 30px;
+  display: flex;
+  max-width: 450px;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.aside-info .sub-info {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  align-items: center;
+}
+
+.aside-info .card-body p {
+  font-size: 1rem;
+  max-width: 450px;
 }
 
 #aside-movie #close-button {
