@@ -133,7 +133,7 @@ const aside = (data) => {
   setTimeout(() => {
     
     const {title, vote_average, runtime, genres, release_date, overview, backdrop_path, production_companies} = data;
-    
+    console.log(data)
     const genresArray = new Array()
     genres.forEach((genre) => genresArray.push(genre.name))
 
@@ -163,15 +163,15 @@ const aside = (data) => {
           <h6 style="color: #508aa7; background: none;">${production_companies[0] ? (production_companies[0].name) : ("")}</h6>
           <h6 style="background: none; margin-left: 20px;">${genresArray.map((genre) => ` ${genre}`)}</h6>
         </div>
+        <p style="background: none; color: #ffffff96; border-top: 1px solid #ffffff3f; padding-top: 20px;">${overview}</p>
         <div class="sub-info" style="background: none;">
-          ${vote_average === 0.0 ? ("") : (`<p style="background: none; color: #ffff">${vote_average.toFixed(1)}</p>`)}
-          ${runtime === 0 ? ("") : (`<p style="background: none; color: #ffff">${runtime} min</p>`)}
+          ${vote_average === 0.0 ? ("") : (`<p style="background: none; color: #ffff"><span style="color: #d3830afb; background: none;">IMDb</span> ${vote_average.toFixed(1)}</p>`)}
+          ${runtime === 0 ? ("") : (`<p style="background: none; color: #ffff">\uD83D\uDD57 ${runtime} min</p>`)}
         </div>
-          <p style="background: none; color: #ffffff96">${overview}</p>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">Left</button>
-            <button type="button" class="btn btn-primary">Middle</button>
-            <button type="button" class="btn btn-primary">Right</button>
+            <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Favorite</button>
+            <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Watch later</button>
+            <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Home Page</button>
           </div>
       </div>
       </div>
