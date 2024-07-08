@@ -16,14 +16,17 @@ const fetchMovies = async (endPoint, query = "") => {
 const searchMovies = async (query) => {
   moviesContainer.innerHTML = ""
   try {
-    const data = await fetchMovies("/search/movie?query=", query)
+    let data = await fetchMovies("/search/movie?query=", query)
     if(data.results){
       for(const movie of data.results){
-        createCard(movie)
+        data = await fetchMovies(`/movie/${movie.id}?`)
+        createCard(data)
       }
     }
   } catch (error) {
     console.log(error)
   }
 }
+
+
 

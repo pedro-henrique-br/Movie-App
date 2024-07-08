@@ -48,6 +48,10 @@ aside li {
   gap: 50px;
 }
 
+.tag-container p{
+  cursor: pointer;
+}
+
 nav label {
   margin-top: 20px;
   display: flex;
@@ -69,13 +73,14 @@ nav label input {
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex;
   flex-wrap: wrap;
   gap: 50px;
-  height: 100vh;
 }
 
 .card {
+  opacity: 0;
+  transition: 5.5s;
   cursor: pointer;
 }
 
@@ -112,11 +117,26 @@ nav label input {
 }
 
 #aside-movie {
-  opacity: 0;
   position: fixed;
-  right: -0vw;
+  right: 0;
+  transform: translateX(100%);
   background: #161f2e;
   height: 100vh;
-  width: 0px;
-  transition: 0.1s;
+  transition: 0.3s;
+  width: 500px;
+}
+
+#aside-movie #close-button {
+  margin: 20px;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-group {
+}
+
+.page-container {
+  margin: 80px 0 80px 0px;
+  display: flex;
+  justify-content: center;
 }
