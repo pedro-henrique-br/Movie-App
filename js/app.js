@@ -3,53 +3,30 @@ const input = document.getElementById("input-field");
 const asideContainer = document.getElementById("aside-movie");
 const closeButton = document.getElementById("close-button");
 const pageContainer = document.querySelector(".page-container");
-const menuButton = document.getElementById("menu-hamburguer")
+const menuButton = document.getElementById("menu-hamburguer");
 
 menuButton.addEventListener("click", () => {
-  menuButton.style.opacity = 0
-  document.querySelector("aside").style.transform = "translateX(0%)"
-})
-
-let defaultPages = [1, 2, 3, 4, 5];
-
-let currentPage
-
-const getCurrentPage = () => {
-  let pages = document.createElement("div");
-  pages.innerHTML = `
-          <div class="btn-group">
-            ${defaultPages.map((page) => {
-              return `<a class="btn btn-primary active">${page}</a>`;
-            })}
-          </div>
-          `;
-    pages.querySelectorAll("a").forEach((page) => {
-    page.addEventListener("click", () => {
-      const pageValue = Number(page.textContent);
-      getMovies("", pageValue);
-      currentPage = defaultPages.indexOf(pageValue)
-    });
-  });
-  pageContainer.appendChild(pages);
-};
-
-getCurrentPage(defaultPages);
+  menuButton.style.opacity = 0;
+  document.querySelector("aside").style.transform = "translateX(0%)";
+});
 
 const getMovies = async (option, page = 1) => {
   const language = `pt-BR`;
-  document.querySelectorAll(".tag-container p").forEach((tag) => tag.style.background = `none`)
+  document
+    .querySelectorAll(".tag-container p")
+    .forEach((tag) => (tag.style.background = `none`));
   let url;
   switch (option) {
     case `Popular`:
-      document.querySelector("#popular-button").style.background = `#1f2a30`
+      document.querySelector("#popular-button").style.background = `#1f2a30`;
       url = `/movie/popular?language=${language}S&page=${page}`;
       break;
     case `Top Rated`:
-      document.querySelector("#topRated-button").style.background = "#1f2a30"
+      document.querySelector("#topRated-button").style.background = "#1f2a30";
       url = `/movie/top_rated?language=${language}&page=${page}`;
       break;
     default:
-      document.querySelector("#trending-button").style.background = "#1f2a30"
+      document.querySelector("#trending-button").style.background = "#1f2a30";
       url = `/movie/upcoming?language=en-US&page=${page}`;
   }
   try {
@@ -57,6 +34,7 @@ const getMovies = async (option, page = 1) => {
     for (const movieId of data.results) {
       getMovieData(movieId.id);
     }
+    getCurrentPage(defaultPages)
   } catch (error) {
     console.log(error);
   }
@@ -80,13 +58,13 @@ const getMovieData = async (movieId) => {
 
 const createCard = (data) => {
   let card = document.createElement("div");
-  card.style.opacity = "0"
+  card.style.opacity = "0";
 
   card.style.border = "none";
   card.className = "card";
   setTimeout(() => {
     const { poster_path, title, vote_average, runtime } = data;
-  
+
     card.addEventListener("click", () => aside(data));
     card.innerHTML = `
     <div class="card-container">
@@ -95,20 +73,31 @@ const createCard = (data) => {
         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
         : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
     } class="card-img-top" alt="${title} img"
-     style="height: ${poster_path ? ("") : ("450px")}">
+    style="height: ${poster_path ? "" : "450px"}">
         <div class="card-body">
-          <h6>${title}</h6>
+        <h6>${title}</h6>
           <div class="movie-info"
-          ${vote_average === 0.0 ? ("") : (`<p style="background: none; color: #ffff">${vote_average.toFixed(1)}</p>`)}
-          ${runtime === 0 ? ("") : (`<p style="background: none; color: #ffff">${runtime} min</p>`)}
+          ${
+            vote_average === 0.0
+              ? ""
+              : `<p style="background: none; color: #ffff">${vote_average.toFixed(
+                  1
+                )}</p>`
+          }
+          ${
+            runtime === 0
+              ? ""
+              : `<p style="background: none; color: #ffff">${runtime} min</p>`
+          }
           </div>
           </div>
           </div>
           `;
-          card.style.opacity = "1"
-          moviesContainer.appendChild(card);
-  }, 300)
-      };
+    card.style.opacity = "1";
+    moviesContainer.appendChild(card);
+  }, 300);moviesContainer
+};
+
 let typingTimeout;
 
 input.addEventListener("keyup", () => {
@@ -125,21 +114,59 @@ input.addEventListener("keyup", () => {
   }, 300);
 });
 
+let defaultPages = [1, 2, 3, 4, 5];
+
+let currentPage;
+
+const getCurrentPage = (defaultPages) => {
+  pageContainer.innerHTML = "";
+  setTimeout(() => {
+    let pages = document.createElement("div");
+    pages.className = "page-container";
+    pages.innerHTML = `
+        <div class="btn-group">
+          ${defaultPages
+            .map((page) => {
+              return `<a class="btn btn-primary">${page}</a>`;
+            })
+            .join("")}
+        </div>
+        `;
+    pages.querySelectorAll("a").forEach((page) => {
+      page.addEventListener("click", () => {
+        const pageValue = Number(page.textContent);
+          getMovies("", pageValue);
+          currentPage = defaultPages.indexOf(pageValue);
+      });
+    });
+    pageContainer.appendChild(pages);
+  }, 300);
+  pageContainer.style.opacity = "1"
+};
+
+
 const aside = (data) => {
-  if(asideContainer.querySelector(".aside-info")) {
+  if (asideContainer.querySelector(".aside-info")) {
     asideContainer.querySelector(".aside-info").remove();
   }
   asideContainer.style.transform = "translateX(0%)";
   setTimeout(() => {
-    
-    const {title, vote_average, runtime, genres, release_date, overview, backdrop_path, production_companies} = data;
-    console.log(data)
-    const genresArray = new Array()
-    genres.forEach((genre) => genresArray.push(genre.name))
+    const {
+      title,
+      vote_average,
+      runtime,
+      genres,
+      release_date,
+      overview,
+      backdrop_path,
+      production_companies,
+    } = data;
+    const genresArray = new Array();
+    genres.forEach((genre) => genresArray.push(genre.name));
 
     let asideInfo = document.createElement("div");
     asideInfo.classList = "aside-info";
-    asideInfo.style.background = "#192227"
+    asideInfo.style.background = "#192227";
     asideInfo.innerHTML = `
     <img
       id="close-button"
@@ -152,36 +179,57 @@ const aside = (data) => {
       <img src=${
         backdrop_path
           ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
-          : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"} 
+          : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
+      } 
       class="card-img-top">
       <div class="card-title" style="background: none;" >
         <h4 style="background: none; color: #ffff">${title}</h6>
-        <h4 style="background: none; color: #ffffff96">${release_date.slice(0,4)}</h4>
+        <h4 style="background: none; color: #ffffff96">${release_date.slice(
+          0,
+          4
+        )}</h4>
       </div>
       <div class="movie-info"
         <div class="sub-info" style="word-wrap: wrap;">
-          <h6 style="color: #508aa7; background: none;">${production_companies[0] ? (production_companies[0].name) : ("")}</h6>
-          <h6 style="background: none; margin-left: 20px;">${genresArray.map((genre) => ` ${genre}`)}</h6>
+          <h6 style="color: #508aa7; background: none;">${
+            production_companies[0] ? production_companies[0].name : ""
+          }</h6>
+          <h6 style="background: none; margin-left: 20px;">${genresArray.map(
+            (genre) => ` ${genre}`
+          )}</h6>
         </div>
         <p style="background: none; color: #ffffff96; border-top: 1px solid #ffffff3f; padding-top: 20px;">${overview}</p>
         <div class="sub-info" style="background: none;">
-          ${vote_average === 0.0 ? ("") : (`<p style="background: none; color: #ffff"><span style="color: #d3830afb; background: none;">IMDb</span> ${vote_average.toFixed(1)}</p>`)}
-          ${runtime === 0 ? ("") : (`<p style="background: none; color: #ffff">\uD83D\uDD57 ${runtime} min</p>`)}
+          ${
+            vote_average === 0.0
+              ? ""
+              : `<p style="background: none; color: #ffff"><span style="color: #d3830afb; background: none;">IMDb</span> ${vote_average.toFixed(
+                  1
+                )}</p>`
+          }
+          ${
+            runtime === 0
+              ? ""
+              : `<p style="background: none; color: #ffff">\uD83D\uDD57 ${runtime} min</p>`
+          }
         </div>
+        </div>
+        <div class="buttons-container">
           <div class="btn-group" role="group" aria-label="Basic example">
             <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Favorite</button>
             <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Watch later</button>
             <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Home Page</button>
           </div>
-      </div>
+        </div>
       </div>
     `;
 
     asideContainer.appendChild(asideInfo);
-    document.querySelector("#close-button").addEventListener("click", () => closeAside());
+    document
+      .querySelector("#close-button")
+      .addEventListener("click", () => closeAside());
   }, 100);
 };
-
 
 const closeAside = () => {
   asideContainer.style.transform = "translateX(100%)";
@@ -189,19 +237,18 @@ const closeAside = () => {
 };
 
 document.querySelectorAll(".tag-container p").forEach((option) => {
-  option.style.background = "none"
+  option.style.background = "none";
   option.addEventListener("click", () => {
-    option.style.background = "none"
+    option.style.background = "none";
     moviesContainer.innerHTML = "";
     setTimeout(() => {
       const optionName = option.textContent;
       getMovies(optionName);
-      getCurrentPage();
     }, 150);
-  })}
-);
+  });
+});
 
 document.querySelector("aside img").addEventListener("click", () => {
-  menuButton.style.opacity = "1"
-  document.querySelector("aside").style.transform = "translateX(-100%)"
-})
+  menuButton.style.opacity = "1";
+  document.querySelector("aside").style.transform = "translateX(-100%)";
+});
