@@ -3,15 +3,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-<<<<<<< HEAD
   background: #19262b;
   overflow-x: hidden;
-=======
-  background: #141a1d;
->>>>>>> 4820a3f1cfc6e09cd3f8faa848bc110bd91004ed
 }
 
 .app {
+  overflow-x: hidden;
   display: flex;
   width: 100vw;
 }
@@ -62,17 +59,10 @@ aside li {
 }
 
 .main {
-<<<<<<< HEAD
-  overflow-y: hidden;
-  margin-left: 200px;
+  transition: 0.3s;
   position: relative;
   width: 100vw;
   height: 100vh;
-=======
-  margin-left: 150px;
-  position: relative;
-  height: 100%;
->>>>>>> 4820a3f1cfc6e09cd3f8faa848bc110bd91004ed
   justify-content: center;
   align-items: center;
 }
@@ -142,8 +132,7 @@ nav label input:focus {
 }
 
 .movies-container {
-  width: 80vw;
-  margin-top: 30px;
+  margin: 20px 20px 20px 20px;
   display: flex;
   justify-content: center;
   align-items: flex;
@@ -169,27 +158,24 @@ nav label input:focus {
 }
 
 .card-body h6 {
+  min-height: 20px;
   color: #ffff;
   font-weight: 500;
 }
 
 .card-body {
+  gap: 10px;
+  max-width: 240px;
+  height: 90px;
   align-items: center;
-  justify-content: center;
-  text-align: start;
-  width: 250px;
-  min-width: 200px;
+  text-align: center;
+  justify-content: space-between;
+  display: flex;
+  min-width: 233px;
   background: none;
-  font-weight: 500;
-  height: 50px;
 }
 
-.card-body .movie-info {
-  background: none;
-  color: #ffff;
-  display: flex;
-  justify-content: space-between;
-}
+/* Aside */
 
 #aside-movie {
   position: fixed;
@@ -203,21 +189,17 @@ nav label input:focus {
   width: 500px;
 }
 
-#aside-movie .btn-group {
-  margin-top: 200px;
-}
-
 .aside-info {
-  position: absolute;
   width: 500px;
   height: 100vh;
 }
 
 .aside-info .card-body {
-  gap: 20px;
+  gap: 30px;
   width: 500px;
-  display: flex;
+  max-width: 500px;
   height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
@@ -244,9 +226,11 @@ nav label input:focus {
   text-align: center;
   justify-content: space-around;
   align-items: center;
+  background: none;
 }
 
 .aside-info .sub-info {
+  overflow: hidden;
   display: flex;
   justify-content: space-around;
   width: 400px;
@@ -254,6 +238,8 @@ nav label input:focus {
 }
 
 .aside-info .card-body p {
+  overflow: hidden;
+  min-height: 140px;
   font-size: 1rem;
   max-width: 450px;
 }
@@ -266,19 +252,44 @@ nav label input:focus {
   cursor: pointer;
 }
 
-.buttons-container {
+#aside-movie .buttons-container {
   display: flex;
-  align-self: flex-end;
-  width: 500px;
-  height: 50px;
-  background: #141a1d;
+  position: absolute;
+  bottom: 0px;
 }
 
-.btn-group {
+#aside-movie .btn-group {
+  border-radius: 0px;
+  width: 500px;
+}
+
+.btn-group button {
+  height: 70px;
+  border: none;
+  background: #1f2a30;
+  border-radius: 0px;
 }
 
 .page-container {
-  display: none;
+  transition: 2.3s;
+  opacity: 0;
   margin: 80px 0 80px 0px;
   justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.page-container .btn-group {
+  gap: 5px;
+}
+
+.page-container .btn-group a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 60px;
+  border: none;
+  background: #345769;
+  border-radius: 16;
 }
