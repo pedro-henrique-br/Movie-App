@@ -34,7 +34,6 @@ const getMovies = async (option, page = 1) => {
     for (const movieId of data.results) {
       getMovieData(movieId.id);
     }
-    getCurrentPage(defaultPages)
   } catch (error) {
     console.log(error);
   }
@@ -73,29 +72,30 @@ const createCard = (data) => {
         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
         : "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
     } class="card-img-top" alt="${title} img"
-    style="height: ${poster_path ? "" : "450px"}">
-        <div class="card-body">
-        <h6>${title}</h6>
-          <div class="movie-info"
-          ${
-            vote_average === 0.0
-              ? ""
-              : `<p style="background: none; color: #ffff">${vote_average.toFixed(
-                  1
-                )}</p>`
-          }
-          ${
-            runtime === 0
-              ? ""
-              : `<p style="background: none; color: #ffff">${runtime} min</p>`
-          }
+      style="height: ${poster_path ? "" : "450px"}">
+      <div class="card-body">
+      <h6>${title}</h6>
+      <div class="movie-info"
+      ${
+        vote_average === 0.0
+          ? ""
+          : `<p style="background: none; color: #ffff">${vote_average.toFixed(
+              1
+            )}</p>`
+      }
+        ${
+          runtime === 0
+            ? ""
+            : `<p style="background: none; color: #ffff">${runtime} min</p>`
+        }
           </div>
           </div>
           </div>
           `;
     card.style.opacity = "1";
     moviesContainer.appendChild(card);
-  }, 300);moviesContainer
+  }, 300);
+  moviesContainer;
 };
 
 let typingTimeout;
@@ -124,26 +124,27 @@ const getCurrentPage = (defaultPages) => {
     let pages = document.createElement("div");
     pages.className = "page-container";
     pages.innerHTML = `
-        <div class="btn-group">
-          ${defaultPages
-            .map((page) => {
-              return `<a class="btn btn-primary">${page}</a>`;
-            })
-            .join("")}
-        </div>
-        `;
+    <div class="btn-group">
+    ${defaultPages
+      .map((page) => {
+        return `<a class="btn btn-primary">${page}</a>`;
+      })
+      .join("")}
+    </div>
+    `;
     pages.querySelectorAll("a").forEach((page) => {
       page.addEventListener("click", () => {
         const pageValue = Number(page.textContent);
-          getMovies("", pageValue);
-          currentPage = defaultPages.indexOf(pageValue);
+        getMovies("", pageValue);
+        currentPage = defaultPages.indexOf(pageValue);
       });
     });
     pageContainer.appendChild(pages);
   }, 300);
-  pageContainer.style.opacity = "1"
+  pageContainer.style.opacity = "1";
 };
 
+getCurrentPage(defaultPages);
 
 const aside = (data) => {
   if (asideContainer.querySelector(".aside-info")) {
