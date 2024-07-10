@@ -3,8 +3,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+<<<<<<< HEAD
   background: #19262b;
   overflow-x: hidden;
+=======
+  background: #141a1d;
+>>>>>>> 4820a3f1cfc6e09cd3f8faa848bc110bd91004ed
 }
 
 .app {
@@ -12,30 +16,63 @@
   width: 100vw;
 }
 
+#menu-hamburguer {
+  transition: 0.6s;
+  height: 40px;
+  cursor: pointer;
+  margin: 20px;
+}
+
 aside {
+  transition: 0.5s;
+  transform: translateX(-100%);
   display: flex;
   align-items: center;
-  background: #161f2e;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  background: #192227;
   position: fixed;
   height: 100vh;
   width: 200px;
   color: #ffff;
 }
 
+aside img {
+  position: absolute;
+  background: none;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-left: 150px;
+}
+
 aside ul {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: none;
 }
 
 aside li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
 }
 
 .main {
+<<<<<<< HEAD
   overflow-y: hidden;
   margin-left: 200px;
   position: relative;
   width: 100vw;
   height: 100vh;
+=======
+  margin-left: 150px;
+  position: relative;
+  height: 100%;
+>>>>>>> 4820a3f1cfc6e09cd3f8faa848bc110bd91004ed
   justify-content: center;
   align-items: center;
 }
@@ -45,11 +82,24 @@ aside li {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 80px;
+  margin-top: 40px;
 }
 
 .tag-container p{
+  transition: 0.5s;
+  border-radius: 6px;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+}
+
+.tag-container p:hover {
+  background: #1f2a30;
 }
 
 nav label {
@@ -59,28 +109,53 @@ nav label {
 }
 
 nav label input {
-  outline: none;
   border: none;
   color: #ffff;
-  background: #2a718d;
+  background: #1f2a30;
   width: 70vw;
-  padding-left: 100px;
+  border-radius: 6px;
+  padding-left: 50px;
   height: 50px;
-  box-shadow: #000000 2px 3px 4px;
+}
+
+nav label input:focus {
+  outline: solid 1px #345769;
+}
+
+@keyframes card-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+
+}
+
+@keyframes card-animation-close {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .movies-container {
-  margin-top: 50px;
+  width: 80vw;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 60px;
+  transition: 0.3s;
+  animation-name: card-animation;
+  animation-duration: 1s;
 }
 
 .card {
-  opacity: 0;
-  transition: 5.5s;
+  background: none;
   cursor: pointer;
 }
 
@@ -104,39 +179,106 @@ nav label input {
   text-align: start;
   width: 250px;
   min-width: 200px;
-  background: #19262b;
+  background: none;
   font-weight: 500;
   height: 50px;
 }
 
 .card-body .movie-info {
+  background: none;
   color: #ffff;
-  height: 0px;
   display: flex;
   justify-content: space-between;
 }
 
 #aside-movie {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   right: 0;
   transform: translateX(100%);
-  background: #161f2e;
   height: 100vh;
+  background: #192227;
   transition: 0.3s;
   width: 500px;
 }
 
-#aside-movie #close-button {
-  margin: 20px;
+#aside-movie .btn-group {
+  margin-top: 200px;
+}
+
+.aside-info {
+  position: absolute;
+  width: 500px;
+  height: 100vh;
+}
+
+.aside-info .card-body {
+  gap: 20px;
+  width: 500px;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  text-align: center;
+}
+
+.aside-info img {
+  width: 500px;
   background: none;
+}
+
+.aside-info .card-title {
+  color: #192227;
+  display: flex;
+  justify-content: space-around;
+  max-width: 450px;
+  gap: 10px;
+}
+
+.aside-info .movie-info {
+  gap: 30px;
+  display: flex;
+  max-width: 450px;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.aside-info .sub-info {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  align-items: center;
+}
+
+.aside-info .card-body p {
+  font-size: 1rem;
+  max-width: 450px;
+}
+
+#aside-movie #close-button {
+  margin: 5px;
+  height: 40px;
+  width: 40px;
+  position: absolute;
   cursor: pointer;
+}
+
+.buttons-container {
+  display: flex;
+  align-self: flex-end;
+  width: 500px;
+  height: 50px;
+  background: #141a1d;
 }
 
 .btn-group {
 }
 
 .page-container {
+  display: none;
   margin: 80px 0 80px 0px;
-  display: flex;
   justify-content: center;
 }
