@@ -8,6 +8,7 @@ const menuButton = document.getElementById("menu-hamburguer");
 menuButton.addEventListener("click", () => {
   menuButton.style.opacity = 0;
   document.querySelector("aside").style.transform = "translateX(0%)";
+  document.querySelector(".main").style.marginLeft = "150px"
 });
 
 const getMovies = async (option, page = 1) => {
@@ -65,8 +66,8 @@ const createCard = (data) => {
     const { poster_path, title, vote_average, runtime } = data;
 
     card.addEventListener("click", () => aside(data));
+    card.style.background = "none"
     card.innerHTML = `
-    <div class="card-container">
     <img src=${
       poster_path
         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -88,8 +89,6 @@ const createCard = (data) => {
             ? ""
             : `<p style="background: none; color: #ffff">${runtime} min</p>`
         }
-          </div>
-          </div>
           </div>
           `;
     card.style.opacity = "1";
@@ -199,7 +198,9 @@ const aside = (data) => {
             (genre) => ` ${genre}`
           )}</h6>
         </div>
-        <p style="background: none; color: #ffffff96; border-top: 1px solid #ffffff3f; padding-top: 20px;">${overview}</p>
+        <p style="background: none; color: #ffffff96; border-top: 1px solid #ffffff3f; padding-top: 20px;">
+          ${overview}
+        </p>
         <div class="sub-info" style="background: none;">
           ${
             vote_average === 0.0
@@ -214,13 +215,13 @@ const aside = (data) => {
               : `<p style="background: none; color: #ffff">\uD83D\uDD57 ${runtime} min</p>`
           }
         </div>
-        </div>
         <div class="buttons-container">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Favorite</button>
-            <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Watch later</button>
-            <button style="height: 80px; width: 150px" type="button" class="btn btn-primary">Home Page</button>
+            <button type="button" class="btn btn-primary">Favorite</button>
+            <button type="button" class="btn btn-primary">Watch later</button>
+            <button type="button" class="btn btn-primary">Home Page</button>
           </div>
+        </div>
         </div>
       </div>
     `;
@@ -252,4 +253,5 @@ document.querySelectorAll(".tag-container p").forEach((option) => {
 document.querySelector("aside img").addEventListener("click", () => {
   menuButton.style.opacity = "1";
   document.querySelector("aside").style.transform = "translateX(-100%)";
+  document.querySelector(".main").style.marginLeft = "0px"
 });

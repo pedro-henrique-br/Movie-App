@@ -3,7 +3,8 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background: #141a1d;
+  background: #19262b;
+  overflow-x: hidden;
 }
 
 .app {
@@ -58,9 +59,10 @@ aside li {
 }
 
 .main {
-  margin-left: 150px;
+  transition: 0.3s;
   position: relative;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
 }
@@ -130,8 +132,7 @@ nav label input:focus {
 }
 
 .movies-container {
-  width: 80vw;
-  margin-top: 30px;
+  margin: 20px 20px 20px 20px;
   display: flex;
   justify-content: center;
   align-items: flex;
@@ -157,26 +158,21 @@ nav label input:focus {
 }
 
 .card-body h6 {
+  min-height: 20px;
   color: #ffff;
   font-weight: 500;
 }
 
 .card-body {
+  gap: 10px;
+  max-width: 240px;
+  height: 90px;
   align-items: center;
-  justify-content: center;
-  text-align: start;
-  width: 250px;
-  min-width: 200px;
-  background: none;
-  font-weight: 500;
-  height: 50px;
-}
-
-.card-body .movie-info {
-  background: none;
-  color: #ffff;
-  display: flex;
+  text-align: center;
   justify-content: space-between;
+  display: flex;
+  min-width: 233px;
+  background: none;
 }
 
 /* Aside */
@@ -201,6 +197,8 @@ nav label input:focus {
 .aside-info .card-body {
   gap: 30px;
   width: 500px;
+  max-width: 500px;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -228,9 +226,11 @@ nav label input:focus {
   text-align: center;
   justify-content: space-around;
   align-items: center;
+  background: none;
 }
 
 .aside-info .sub-info {
+  overflow: hidden;
   display: flex;
   justify-content: space-around;
   width: 400px;
@@ -238,6 +238,7 @@ nav label input:focus {
 }
 
 .aside-info .card-body p {
+  overflow: hidden;
   min-height: 140px;
   font-size: 1rem;
   max-width: 450px;
@@ -253,26 +254,20 @@ nav label input:focus {
 
 #aside-movie .buttons-container {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  align-self: flex-end;
   position: absolute;
-  height: 95vh;
-  background: none;
+  bottom: 0px;
 }
 
 #aside-movie .btn-group {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  align-self: flex-end;
+  border-radius: 0px;
   width: 500px;
 }
 
 .btn-group button {
+  height: 70px;
   border: none;
   background: #1f2a30;
-  border-radius: 0;
+  border-radius: 0px;
 }
 
 .page-container {
