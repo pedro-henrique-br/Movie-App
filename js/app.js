@@ -6,7 +6,9 @@ const pageContainer = document.querySelector(".page-container");
 const menuButton = document.getElementById("menu-hamburguer");
 
 menuButton.addEventListener("click", () => {
+  menuButton.style.display = "none"
   menuButton.style.opacity = 0;
+  document.querySelector("nav").style.left = "50px"
   document.querySelector("aside").style.transform = "translateX(0%)";
   document.querySelector(".main").style.marginLeft = "150px"
 });
@@ -86,7 +88,6 @@ const createCard = (data) => {
     card.style.opacity = "1";
     moviesContainer.appendChild(card);
   }, 300);
-  moviesContainer;
 };
 
 let typingTimeout;
@@ -243,7 +244,11 @@ document.querySelectorAll(".tag-container p").forEach((option) => {
 });
 
 document.querySelector("aside img").addEventListener("click", () => {
-  menuButton.style.opacity = "1";
+  menuButton.style.display = "flex";
   document.querySelector("aside").style.transform = "translateX(-100%)";
+  document.querySelector("nav").style.left = "0px"
   document.querySelector(".main").style.marginLeft = "0px"
+  setTimeout(() => {
+    menuButton.style.opacity = "1";
+  }, 200)
 });
