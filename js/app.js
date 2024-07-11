@@ -11,6 +11,12 @@ menuButton.addEventListener("click", () => {
   document.querySelector("nav").style.left = "50px"
   document.querySelector("aside").style.transform = "translateX(0%)";
   document.querySelector(".main").style.marginLeft = "150px"
+  if(window.screen.width <= 600){
+    document.querySelector("#close-button-aside").style.marginLeft = "85vw"
+    document.querySelector("#close-button-aside").style.marginTop = "1vh"
+    document.querySelector(".main").style.display = "none"
+    document.querySelectorAll(".link").forEach((link) => link.style.width = "100vw")
+  }
 });
 
 const getMovies = async (option, page = 1) => {
@@ -248,6 +254,11 @@ document.querySelector("aside img").addEventListener("click", () => {
   document.querySelector("aside").style.transform = "translateX(-100%)";
   document.querySelector("nav").style.left = "0px"
   document.querySelector(".main").style.marginLeft = "0px"
+  if(window.screen.width <= 600){
+    setTimeout(() => {
+      document.querySelector(".main").style.display = "block"
+    }, 300)
+  }
   setTimeout(() => {
     menuButton.style.opacity = "1";
   }, 200)

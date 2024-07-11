@@ -71,7 +71,7 @@ aside #close-button-aside {
   align-items: center;
   background: none;
   height: 40px;
-  width: 110px;
+  width: 110px; 
 }
 
 .link {
@@ -245,6 +245,10 @@ nav label input:focus {
   text-align: center;
 }
 
+.aside-info .card-body {
+  height: 60vh;
+}
+
 .aside-info img {
   width: 500px;
   background: none;
@@ -361,6 +365,10 @@ nav label input:focus {
   .tag-container {
     gap: 10px;
   }
+
+  aside {
+    width: 100vw;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -404,7 +412,7 @@ nav label input:focus {
   }
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 800px) {
   #aside-movie .btn-group button {
     height: 50px;
   }
