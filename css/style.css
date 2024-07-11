@@ -14,6 +14,7 @@
 }
 
 #menu-hamburguer {
+  display: flex;
   transition: 0.6s;
   height: 40px;
   cursor: pointer;
@@ -25,7 +26,7 @@ aside {
   transform: translateX(-100%);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: row-reverse;
   background: #192227;
   position: fixed;
@@ -34,7 +35,7 @@ aside {
   color: #ffff;
 }
 
-aside img {
+aside #close-button-aside {
   position: absolute;
   background: none;
   cursor: pointer;
@@ -42,20 +43,50 @@ aside img {
   margin-left: 150px;
 }
 
-aside ul {
-  position: relative;
+.aside-links {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  height: 70vh;
+}
+
+.aside-links img {
+  height: 30px;
+}
+
+.aside-links ul {
+  gap: 5px;
+  padding: 0;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background: none;
 }
 
-aside li {
+.aside-links li {
+  text-align: center;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background: none;
+  height: 50px;
+  width: 110px;
+}
+
+.link {
+  background: none;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aside-links .link:hover {
+  border-right: 4px solid #246cbe;
+  cursor: pointer;
+  color: #246cbe;
 }
 
 .main {
@@ -292,4 +323,51 @@ nav label input:focus {
   border: none;
   background: #345769;
   border-radius: 16;
+}
+
+@media screen and (max-width: 600px) {
+  .tag-container {
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .tag-container {
+    gap: 0px;
+  }
+
+  #aside-movie {
+    width: 100vw;
+  }
+  
+  .aside-info {
+    width: 100vw;
+  }
+  
+  .aside-info .card-body {
+    width: 100vw;
+  }
+  
+  .aside-info img {
+    width: 100vw;
+  }
+
+  .aside-info .card-title {
+    width: 90vw;
+  }
+  
+  .aside-info .movie-info {
+    width: 90vw;
+  }
+  
+  .aside-info .sub-info {
+    width: 90vw;
+  }
+  
+  .aside-info .card-body p {
+    width: 90vw;
+  }
+  #aside-movie .btn-group {
+    width: 100vw;
+  }
 }

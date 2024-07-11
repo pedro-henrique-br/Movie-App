@@ -75,21 +75,13 @@ const createCard = (data) => {
     } class="card-img-top" alt="${title} img"
       style="height: ${poster_path ? "" : "450px"}">
       <div class="card-body">
-      <h6>${title}</h6>
-      <div class="movie-info"
-      ${
-        vote_average === 0.0
-          ? ""
-          : `<p style="background: none; color: #ffff">${vote_average.toFixed(
-              1
-            )}</p>`
-      }
-        ${
+        <h6>${title}</h6>
+          ${
           runtime === 0
             ? ""
-            : `<p style="background: none; color: #ffff">${runtime} min</p>`
+            : `<h6 style="background: none; color: #ffff">${runtime} min</h6>`
         }
-          </div>
+        </div>
           `;
     card.style.opacity = "1";
     moviesContainer.appendChild(card);
