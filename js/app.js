@@ -190,10 +190,10 @@ const aside = (data) => {
             (genre) => ` ${genre}`
           )}</h6>
         </div>
-        <p style="background: none; color: #ffffff96; border-top: 1px solid #ffffff3f; padding-top: 20px;">
+        <p class="overview" style="background: none; color: #ffffff96; border-top: 1px solid #ffffff3f; padding-top: 10px;">
           ${overview}
         </p>
-        <div class="sub-info" style="background: none;">
+        <div id="movie-info" class="sub-info" style="background: none;">
           ${
             vote_average === 0.0
               ? ""
