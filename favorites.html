@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+  <link href="./css/favorites.css" rel="stylesheet">
+  <script src="./js/data.js" defer></script>
+  <script src="./js/favorite.js" defer></script>
+  <title>Favorites</title>
+</head>
+<body>
+    <img id="menu-hamburguer" src="./assets/imgs/burger-menu-svgrepo-com.svg" alt="open aside button">
+    <aside>
+    <img
+    id="close-button-aside"
+      width="48"
+      height="48"
+      src="https://img.icons8.com/fluency/48/close-window--v1.png"
+      alt="close-window--v1"
+      onclick="() => closeAside()" />
+      <div style="background: none;" class="aside-links">
+        <ul>
+        <div class="link">
+          <img src="./assets/imgs/home.svg">
+          <li id="home">Discover</li>
+        </div>
+        <div class="link">
+          <img src="./assets/imgs/favorite.svg">
+          <li id="favorites">Favorites</li>
+        </div>
+        <div class="link">
+          <img src="./assets/imgs/clock.svg">
+          <li>Watch later</li>
+        </div>
+        <div class="link">
+          <img src="./assets/imgs/profile-user.svg">
+          <li>Account</li>
+        </div>
+      </ul>
+      <ul>
+        <h5 style="background: none; overflow: hidden;">Genre</h5>
+        <div class="link">
+          <li>Action</li>
+        </div>
+        <div class="link">
+          <li>Comedy</li>
+        </div>
+        <div class="link">
+          <li>Documentary</li>
+        </div>
+        <div class="link">
+          <li>Horror</li>
+        </div>
+      </ul>
+    </div>
+  </aside>
+  
+  <div class="main"></div>
+
+</body>
+</html>

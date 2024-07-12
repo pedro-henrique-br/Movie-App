@@ -4,6 +4,7 @@ const asideContainer = document.getElementById("aside-movie");
 const closeButton = document.getElementById("close-button");
 const pageContainer = document.querySelector(".page-container");
 const menuButton = document.getElementById("menu-hamburguer");
+const favoritesButton = document.getElementById("favorites")
 
 menuButton.addEventListener("click", () => {
   menuButton.style.display = "none"
@@ -11,7 +12,6 @@ menuButton.addEventListener("click", () => {
   document.querySelector("nav").style.left = "50px"
   document.querySelector("aside").style.transform = "translateX(0%)";
   document.querySelector(".main").style.marginLeft = "150px"
-  console.log(window.screen.width)
   if(window.screen.width <= 600){
     document.querySelector("#close-button-aside").style.marginLeft = "85vw"
     document.querySelector("#close-button-aside").style.marginTop = "1vh"
@@ -268,3 +268,7 @@ document.querySelector("aside img").addEventListener("click", () => {
 });
 
 getCurrentPage(defaultPages)
+
+favoritesButton.addEventListener("click", () => {
+  window.location.href = "favorites.html"
+})

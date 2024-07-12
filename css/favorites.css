@@ -1,0 +1,87 @@
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #19262b;
+}
+
+#menu-hamburguer {
+  position: absolute;
+  margin: 20px;
+  left: 0px;
+  transition: 0.6s;
+  height: 40px;
+  cursor: pointer;
+}
+
+aside {
+  transition: 0.5s;
+  transform: translateX(-100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  background: #192227;
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  color: #ffff;
+}
+
+aside #close-button-aside {
+  position: absolute;
+  background: none;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-left: 150px;
+}
+
+.aside-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.aside-links img {
+  height: 20px;
+}
+
+.aside-links ul {
+  padding: 0;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: none;
+}
+
+.aside-links li {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  height: 40px;
+  width: 110px; 
+}
+
+.link {
+  min-height: 30px;
+  background: none;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aside-links .link:hover {
+  border-right: 4px solid #246cbe;
+  cursor: pointer;
+  color: #246cbe;
+}
