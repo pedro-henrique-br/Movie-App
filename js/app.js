@@ -11,6 +11,7 @@ menuButton.addEventListener("click", () => {
   document.querySelector("nav").style.left = "50px"
   document.querySelector("aside").style.transform = "translateX(0%)";
   document.querySelector(".main").style.marginLeft = "150px"
+  console.log(window.screen.width)
   if(window.screen.width <= 600){
     document.querySelector("#close-button-aside").style.marginLeft = "85vw"
     document.querySelector("#close-button-aside").style.marginTop = "1vh"
@@ -20,6 +21,7 @@ menuButton.addEventListener("click", () => {
 });
 
 const getMovies = async (option, page = 1) => {
+  pageContainer.style.display = "none"
   const language = `pt-BR`;
   document
     .querySelectorAll(".tag-container p")
@@ -40,6 +42,7 @@ const getMovies = async (option, page = 1) => {
   }
   try {
     const data = await fetchMovies(url);
+    pageContainer.style.display = "none"
     for (const movieId of data.results) {
       getMovieData(movieId.id);
     }
@@ -55,14 +58,13 @@ const getMovieData = async (movieId) => {
   moviesContainer.innerHTML = "";
   try {
     const data = await fetchMovies(`/movie/${movieId}?`);
-    if (!data) {
-      pages.innerHTML = "";
-    }
     return createCard(data);
   } catch (error) {
     console.log(error);
   }
 };
+
+let cardLoadCount = 0
 
 const createCard = (data) => {
   let card = document.createElement("div");
@@ -71,7 +73,7 @@ const createCard = (data) => {
   card.style.border = "none";
   card.className = "card";
   setTimeout(() => {
-    const { poster_path, title, vote_average, runtime } = data;
+    const { poster_path, title, runtime } = data;
 
     card.addEventListener("click", () => aside(data));
     card.style.background = "none"
@@ -83,16 +85,20 @@ const createCard = (data) => {
     } class="card-img-top" alt="${title} img"
       style="height: ${poster_path ? "" : "450px"}">
       <div class="card-body">
-        <h6>${title}</h6>
+        <h6 class="card-title">${title}</h6>
           ${
           runtime === 0
             ? ""
-            : `<h6 style="background: none; color: #ffff">${runtime} min</h6>`
+            : `<h6 class="card-runtime" style="background: none; color: #ffff">${runtime} min</h6>`
         }
         </div>
           `;
     card.style.opacity = "1";
     moviesContainer.appendChild(card);
+    cardLoadCount++
+    if(document.querySelectorAll(".card").length <= 20){
+      getCurrentPage(defaultPages)
+    }
   }, 300);
 };
 
@@ -124,10 +130,10 @@ const getCurrentPage = (defaultPages) => {
     pages.innerHTML = `
     <div class="btn-group">
     ${defaultPages
-      .map((page) => {
-        return `<a class="btn btn-primary">${page}</a>`;
-      })
-      .join("")}
+    .map((page) => {
+      return `<a class="btn btn-primary">${page}</a>`;
+    })
+    .join("")}
     </div>
     `;
     pages.querySelectorAll("a").forEach((page) => {
@@ -139,10 +145,7 @@ const getCurrentPage = (defaultPages) => {
     });
     pageContainer.appendChild(pages);
   }, 300);
-  pageContainer.style.opacity = "1";
 };
-
-getCurrentPage(defaultPages);
 
 const aside = (data) => {
   if (asideContainer.querySelector(".aside-info")) {
@@ -263,3 +266,5 @@ document.querySelector("aside img").addEventListener("click", () => {
     menuButton.style.opacity = "1";
   }, 200)
 });
+
+getCurrentPage(defaultPages)

@@ -131,6 +131,7 @@ nav {
 }
 
 nav label {
+  width: 70vw;
   background: none;
   margin-top: 20px;
   display: flex;
@@ -146,10 +147,7 @@ nav label input {
   border-radius: 6px;
   padding-left: 50px;
   height: 50px;
-}
-
-nav label input:focus {
-  outline: solid 1px #345769;
+  outline: none;
 }
 
 @keyframes card-animation {
@@ -313,8 +311,8 @@ nav label input:focus {
 }
 
 .page-container {
+  opacity: 1;
   display: flex;
-  transition: 1.3s;
   margin: 40px 0 40px 0px;
   justify-content: center;
   align-items: center;
@@ -372,6 +370,7 @@ nav label input:focus {
 }
 
 @media screen and (max-width: 500px) {
+
   .tag-container {
     gap: 0px;
   }
@@ -403,12 +402,28 @@ nav label input:focus {
   .aside-info .sub-info {
     width: 90vw;
   }
-  
-  .aside-info .card-body p {
-    width: 90vw;
+
+  .movies-container {
+    gap: 20px;
   }
-  #aside-movie .btn-group {
-    width: 100vw;
+  
+  .card img {
+    max-width: 100px;
+    max-height: 200px;
+  }
+  
+  .card-body {
+    overflow: hidden;
+    gap: 0px;
+    max-width: 100px;
+    min-width: 100px;
+  }
+  
+  .tag-container {
+    gap: 10px;
+  }
+  .card-runtime {
+    display: none;
   }
 }
 
